@@ -1,0 +1,6 @@
+@anime_backend_HostAddress = http://localhost:5067
+
+GET {{anime_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

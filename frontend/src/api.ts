@@ -1,0 +1,45 @@
+import axios from "axios";
+import type { AnimeItem, Episode } from './types'
+const API_BASE = '/api';
+
+const api = axios.create({
+    baseURL: API_BASE,
+    withCredentials: true,
+    headers: {
+        "Content-Type": 'application/json',
+    },
+});
+
+export const animeApi = {
+    getAll: (): Promise<AnimeItem[]> =>
+        api.get('/AnimeItem/all-anime').then(res => res.data),
+
+    getById: (id: number): Promise<AnimeItem> =>
+        api.get(`/AnimeItem/get-anime/${id}`).then(res => res.data),
+
+    getEpisodeById: (id: number): Promise<Episode> =>
+        api.get(`/Episode/episode/${id}`).then(res => res.data),
+
+    getEpisodesByAnime: (animeId: number): Promise<Episode[]> =>
+        api.get(`/Episode/episodes-by-anime?animeId=${animeId}`).then(res => res.data),
+
+    getOngoingAnime: (): Promise<AnimeItem[]> =>
+        api.get('/AnimeItem/ongoing-anime').then(res => res.data),
+
+    getCurrentSeasonAnime: (): Promise<AnimeItem[]> =>
+        api.get('/AnimeItem/current-season').then(res => res.data),
+
+    getRandomAnime: (): Promise<AnimeItem> =>
+        api.get('/AnimeItem/random').then(res => res.data),
+
+    getNewAnime: (): Promise<AnimeItem[]> =>
+        api.get('/AnimeItem/new').then(res => res.data),
+    
+    getFavorites: () => api.get('/Favourite').then(res => res.data),
+
+    getFavoriteIds: () => api.get('/Favourite/ids').then(res => res.data),
+
+    addFavourite: (animeId: number) => api.post(`/Favourite/${animeId}`).then(res => res.data),
+
+    removeFavourite: (animeId: number) => api.delete(`/Favourite/${animeId}`).then(res => res.data),
+}

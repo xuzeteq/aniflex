@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@utility layout-shell {
+  @apply mx-auto w-full max-w-[min(100%,90rem)] px-4 sm:px-6 lg:px-8;
+}
+
+body {
+  background-color: #141414;
+}

@@ -1,0 +1,7 @@
+﻿namespace anime_backend.DTOs.Genre
+{
+    public class CreateGenreDto
+    {
+        public string Name { get; set; } = string.Empty;
+    }
+}
