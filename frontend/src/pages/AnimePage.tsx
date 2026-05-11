@@ -51,42 +51,42 @@ export default function AnimePage() {
             {anime && <RatingStars animeId={anime.id} onRated={() => animeApi.getById(anime.id).then(setAnime)} />}
 
             <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-start">
-                <div className="mx-auto w-full shrink-0 max-w-[14rem] sm:max-w-xs lg:mx-0">
-                    <img src={anime?.posterUrl} alt="" className="w-full rounded-xl object-cover aspect-[2/3] max-h-[28rem]" />
+                <div className="mx-auto w-full shrink-0 max-w-56 sm:max-w-xs lg:mx-0">
+                    <img src={anime?.posterUrl} alt="" className="w-full rounded-xl object-cover aspect-2/3 max-h-112" />
                 </div>
                 
                 <div className="grid min-w-0 flex-1 grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-12 lg:gap-x-20 sm:gap-y-5">
                     <div className="text-base sm:text-lg text-[#666666]">Тип</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.typeName}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.typeName}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Эпизоды</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.episodes} / {anime?.maxEpisodes}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.episodes} / {anime?.maxEpisodes}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Год выхода</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.releaseYear}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.releaseYear}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Рейтинг</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.averageRating}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.averageRating}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Количество оценок</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.ratingsCount}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.ratingsCount}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Студия</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.studio}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.studio}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Сезон</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.seasonName}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.seasonName}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Статус</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] break-words">{anime?.statusName}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] wrap-break-words">{anime?.statusName}</div>
 
                     <div className="text-base sm:text-lg text-[#666666]">Жанры</div>
-                    <div className="text-base sm:text-lg text-[#bbbbbb] min-w-0 break-words">{anime?.genres.join(', ')}</div>
+                    <div className="text-base sm:text-lg text-[#bbbbbb] min-w-0 wrap-break-words">{anime?.genres.join(', ')}</div>
                 </div>    
             </div>
 
             <div>
-                <p className="text-base sm:text-lg text-[#d1d1d1] my-8 sm:my-10 break-words">{anime?.description}</p>
+                <p className="text-base sm:text-lg text-[#d1d1d1] my-8 sm:my-10 wrap-break-words">{anime?.description}</p>
             </div>
 
             {selectedEpisode && (
@@ -123,11 +123,7 @@ export default function AnimePage() {
                         </div>
                     </div>
                 )}
-
-
                 </div>
-
-                
             )}
 
         </div>
