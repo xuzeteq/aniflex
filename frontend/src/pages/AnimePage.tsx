@@ -91,8 +91,6 @@ export default function AnimePage() {
 
             {selectedEpisode && (
                 <div>
-                    {/* <VideoPlayer url={selectedEpisode.videoUrl}/> */}
-
                     <div className="relative w-full max-w-6xl mx-auto overflow-hidden rounded-2xl bg-black aspect-video">
                         <iframe 
                             src={selectedEpisode.videoUrl}
