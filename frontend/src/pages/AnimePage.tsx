@@ -91,7 +91,7 @@ export default function AnimePage() {
 
             {selectedEpisode && (
                 <div>
-                    <div className="relative w-full max-w-6xl mx-auto overflow-hidden rounded-2xl bg-black aspect-video">
+                    <div className="relative w-full mx-auto overflow-hidden rounded-2xl bg-black aspect-video">
                         <iframe 
                             src={selectedEpisode.videoUrl}
                             title={`Серия ${selectedEpisode.episodeNumber}`}

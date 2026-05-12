@@ -52,7 +52,7 @@ export default function Header() {
 
     return (
         <> 
-                    <div className={`fixed inset-0 bg-[#1e1e1e] z-50 overflow-auto p-4 sm:p-8 transition-all duration-300
+                    <div className={`fixed inset-0 bg-[#141414] z-50 overflow-auto p-4 sm:p-8 transition-all duration-300
                 ${activeSearch ? 'translate-y-0 visible' : 'opacity-0 translate-y-full invisible'} `}>
 
                 <div className="layout-shell">
