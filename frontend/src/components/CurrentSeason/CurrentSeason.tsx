@@ -8,7 +8,9 @@ export default function CurrentSeason() {
     const [animeList, setAnimeList] = useState<AnimeItem[]>([]);
 
     useEffect(() => {
-        animeApi.getCurrentSeasonAnime().then(data => setAnimeList(data)).catch(err => console.error(err))
+        animeApi.getCurrentSeasonAnime()
+            .then(data => setAnimeList(data))
+            .catch(err => console.error(err))
     }, [])
     
     return (

@@ -1,6 +1,7 @@
 import type { AnimeItem } from '../../types'
 import { Link } from 'react-router-dom'
 import FavouriteButton from '../FavouriteButton/FavouriteButton'
+
 interface animeCardProps {
     anime: AnimeItem
     onClick?: () => void

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import type { AnimeItem } from '../../types';
 import AnimeCard from '../AnimeCard/AnimeCard';
 
-
 export default function Catalog() {
 
     const [animeList, setAnimeList] = useState<AnimeItem[]>([]);

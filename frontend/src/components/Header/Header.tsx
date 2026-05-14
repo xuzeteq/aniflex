@@ -14,7 +14,6 @@ export default function Header() {
     const {isAuthenticated} = useAuth();
 
     const [activeSearch, setActiveSearch] = useState(false);
-
     const [text, setText] = useState('');
     const [animeList, setAnimeList] = useState<AnimeItem[]>([]);
 
