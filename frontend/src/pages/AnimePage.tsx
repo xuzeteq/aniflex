@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import type { AnimeItem, Episode } from "../types";
 import { animeApi } from "../api";
-import { useAuth } from "../contexts/AuthContext";
 import RatingStars from "../components/Rating/RatingStar";
 
 
 export default function AnimePage() {
 
     const { id } = useParams<{id: string}>();
-    const { user } = useAuth();
     const [anime, setAnime] = useState<AnimeItem | null>(null);
     const [episodes, setEpisodes] = useState<Episode[] | null>(null);
     const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
-    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -30,10 +27,6 @@ export default function AnimePage() {
             }
         });
     }, [anime?.id]);
-
-    if (user?.isBlocked) {
-            navigate('/blocked')
-    }
 
         const handleEpisodeClick = (episode: Episode) => {
         setSelectedEpisode(episode);

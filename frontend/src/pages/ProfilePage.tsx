@@ -85,8 +85,6 @@ export default function ProfilePage() {
         );
     }
 
-    if (currentUser?.isBlocked && isOwnProfile)
-            navigate('/blocked')
 
     const regDate = new Date(user.createdAt).toLocaleDateString('ru-RU', {
         day: 'numeric', month: 'long', year: 'numeric'
