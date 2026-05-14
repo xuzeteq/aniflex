@@ -7,6 +7,7 @@ namespace anime_backend.Interfaces
     {
         Task<List<UserResponseDto>> GetAllUsersAsync();
         Task<UserResponseDto> GetUserByIdAsync(int id);
+        Task<UserResponseDto> GetUserByNameAsync(string name);
         Task<UserResponseDto> CreateUserAsync(CreateUserDto dto);
         Task<bool> VerifyUserAsync(int userId, bool isVerify, int adminId, string adminUsername);
         Task<bool> BlockUserAsync(int userId, bool isBlocked, int adminId, string adminUsername);

@@ -58,6 +58,28 @@ namespace anime_backend.Services
             };
         }
 
+        public async Task<UserResponseDto> GetUserByNameAsync(string name)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == name);
+
+            if (user == null)
+                throw new Exception("User not found");
+
+            return new UserResponseDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                AvatarUrl = user.AvatarUrl,
+                FavouritesCount = user.FavouritesCount,
+                RatingsCount = user.RatingsCount,
+                IsVerify = user.IsVerify,
+                IsBlocked = user.IsBlocked,
+                Role = user.Role,
+                CreatedAt = user.CreatedAt
+            };
+        }
+
         public async Task<UserResponseDto> CreateUserAsync(CreateUserDto dto)
         {
             var existingUserEmail = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);

@@ -21,7 +21,7 @@ import ResetPasswordPage from './pages/Auth/ResetPasswordPage'
 
 function App() {
 
-  const { isAuthenticated, isInitialized, user } = useAuth();
+  const { isAuthenticated, isInitialized } = useAuth();
 
   if (!isInitialized) {
     return (
@@ -38,7 +38,7 @@ function App() {
 
         <main className="min-w-0 flex-1">
           <Routes>
-            <Route path='/' element={ user?.isBlocked ? <BlockedPage /> : <HomePage /> }/>
+            <Route path='/' element={ <HomePage /> }/>
             <Route path={'/anime/:id'} element={ <AnimePage /> } />
             <Route path='/catalog' element={ <CatalogPage /> } />
             <Route path='/auth' element={ isAuthenticated ? <Navigate to={"/"} replace /> : <AuthPage /> } />
@@ -47,7 +47,7 @@ function App() {
             <Route path={'/profile/:id'} element={ <ProfilePage />  }/>
             <Route path='/logs' element = {  <LogsPage /> }/>
             <Route path='/users' element = { <UsersPage /> } />
-            <Route path='/blocked' element = { user?.isBlocked ? <BlockedPage /> : <Navigate to={"/"} replace /> } />
+            <Route path='/blocked' element = { <BlockedPage />} />
             <Route path='/audit-logs' element= {<AuditLogsPage />} />
             <Route path='/not-allowed' element= { <MustAdminPage /> } />
             <Route path='/verify' element = { isAuthenticated ? <Navigate to={'/'} replace /> : <VerifyPage /> } />

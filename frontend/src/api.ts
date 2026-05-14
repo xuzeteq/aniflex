@@ -10,6 +10,23 @@ const api = axios.create({
     },
 });
 
+// 403 error obrabotka
+api.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response?.status === 403) {
+            // Не редиректим если уже на /blocked
+            if (window.location.pathname !== '/blocked') {
+                console.log('403 detected, redirecting to /blocked');
+                window.location.href = '/blocked';
+            } else {
+                console.log('403 on /blocked, ignoring');
+            }
+        }
+        return Promise.reject(error);
+    }
+)
+
 export const animeApi = {
     getAll: (): Promise<AnimeItem[]> =>
         api.get('/AnimeItem/all-anime').then(res => res.data),

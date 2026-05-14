@@ -28,6 +28,12 @@ namespace anime_backend.Controllers
             return await _userService.GetUserByIdAsync(id);
         }
 
+        [HttpGet("get-user-by-name")]
+        public async Task<UserResponseDto> GetUserByEmail(string name)
+        {
+            return await _userService.GetUserByNameAsync(name);
+        }
+
         [HttpPost("create-user")]
         public async Task<IActionResult> CreateUserAsync(CreateUserDto dto)
         {

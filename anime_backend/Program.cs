@@ -1,5 +1,6 @@
 using anime_backend.Data;
 using anime_backend.Interfaces;
+using anime_backend.Middleware;
 using anime_backend.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -98,7 +99,6 @@ namespace anime_backend
 
 
             builder.Services.AddAuthorization();
-
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
 
@@ -113,6 +113,7 @@ namespace anime_backend
             app.UseHttpsRedirection();
             app.UseCors("AllowFrontend");
             app.UseAuthentication();
+            app.UseMiddleware<BlockedUserMiddleware>();
             app.UseAuthorization();
             app.MapControllers();
 
