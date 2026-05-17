@@ -46,6 +46,9 @@ export const animeApi = {
     getCurrentSeasonAnime: (): Promise<AnimeItem[]> =>
         api.get('/AnimeItem/current-season').then(res => res.data),
 
+    getRelatedAnime: (animeId: number): Promise<AnimeItem[]> =>
+        api.get(`/Related/related-animes?animeId=${animeId}`).then(res => res.data),
+
     getRandomAnime: (): Promise<AnimeItem> =>
         api.get('/AnimeItem/random').then(res => res.data),
     

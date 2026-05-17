@@ -64,6 +64,7 @@ namespace anime_backend
 
             builder.Services.AddScoped<IAnimeItemService, AnimeItemService>();
             builder.Services.AddScoped<ILogService, LogService>();
+            builder.Services.AddScoped<IRelatedAnimeService, RelatedAnimeService>();
             builder.Services.AddScoped<IEpisodeService, EpisodeService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IUserService, UserService>();

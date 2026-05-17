@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import type { AnimeItem, Episode } from "../types";
 import { animeApi } from "../api";
 import RatingStars from "../components/Rating/RatingStar";
+import AnimeCard from "../components/AnimeCard/AnimeCard";
 
 
 export default function AnimePage() {
@@ -11,11 +12,23 @@ export default function AnimePage() {
     const [anime, setAnime] = useState<AnimeItem | null>(null);
     const [episodes, setEpisodes] = useState<Episode[] | null>(null);
     const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
+    const [relatedAnime, setRelatedAnime] = useState<AnimeItem[]>([]);
+
+    const loadRelated = async () => {
+        try {
+            const data = await animeApi.getRelatedAnime(Number(id));
+            setRelatedAnime(data);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 
 
     useEffect(() => {
         if (!id) return;
-        animeApi.getById(Number(id)).then(data => setAnime(data))
+        animeApi.getById(Number(id)).then(data => setAnime(data));
+        loadRelated();
     }, [id])
 
     useEffect(() => {
@@ -114,7 +127,17 @@ export default function AnimePage() {
                         </div>
                     </div>
                 )}
-                </div>
+                {relatedAnime.length > 0 && (
+                    <div className="mt-6">
+                        <h1 className="font-mono text-[#d1d1d1] text-2xl font-black pb-4">Связанное:</h1>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
+                            {relatedAnime.map(rel => (
+                                <AnimeCard anime={rel} key={rel.id}/>
+                            ))}
+                        </div>
+                    </div>
+                )}
+              </div>
             )}
 
         </div>

@@ -288,6 +288,11 @@ namespace anime_backend.Services
             return result;
         }
 
+        //public async Task<AnimeItemResponseDto> GetRelatedAnime()
+        //{
+
+        //}
+
         public async Task<AnimeItemResponseDto> CreateAnimeAsync(CreateAnimeItemDto dto)
         {
             var existingAnime = await _dbContext.AnimeItem.FirstOrDefaultAsync(a => a.OriginalTitle == dto.OriginalTitle);

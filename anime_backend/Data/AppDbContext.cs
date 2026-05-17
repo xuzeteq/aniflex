@@ -10,6 +10,7 @@ namespace anime_backend.Data
         }
 
         public DbSet<AnimeItem> AnimeItem { get; set; }
+        public DbSet<RelatedAnime> RelatedAnimes { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Episode> Episodes { get; set; }
         public DbSet<User> Users { get; set; }
