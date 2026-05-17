@@ -6,10 +6,38 @@ import AnimeCard from '../AnimeCard/AnimeCard';
 export default function Catalog() {
 
     const [animeList, setAnimeList] = useState<AnimeItem[]>([]);
+    const [hasMore, setHasMore] = useState(true);
+    const [page, setPage] = useState(1);
+
+    const loadAnime = async (currentPage: number, append = false) => {
+        try {
+            const response = await animeApi.getListAnime(currentPage, 24);
+            
+            const newAnime = response || response;
+            
+            if (append) {
+                setAnimeList([...animeList, ...newAnime]);
+            } else {
+                setAnimeList(newAnime);
+            }
+            
+            setHasMore(newAnime.length === 24);
+            setPage(currentPage);
+            
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
-        animeApi.getAll().then(data => setAnimeList(data)).catch(error => console.error(error))
+        loadAnime(1, false);
     }, [])
+
+    const loadMore = () => {
+        if (hasMore) {
+            loadAnime(page + 1, true);
+        }
+    }
 
     return (
         <>
@@ -20,6 +48,17 @@ export default function Catalog() {
                     </div>
                 ))}
             </div>
+
+            {hasMore && (
+                <div className="flex justify-center mt-8">
+                    <button 
+                        className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-all duration-150 cursor-pointer"
+                        onClick={loadMore}
+                    >
+                        Загрузить ещё
+                    </button>
+                </div>
+            )}
         </>
     )
 }

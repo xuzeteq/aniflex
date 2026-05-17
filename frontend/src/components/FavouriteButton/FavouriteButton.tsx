@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { animeApi } from '../../api';
 
@@ -18,14 +18,19 @@ export default function FavoriteButton({ animeId, onToggle }: FavoriteButtonProp
         }
     }, [animeId, isAuthenticated]);
 
-    const checkFavorite = async () => {
+    const checkFavorite = useCallback(async () => {
+        if (loading) return;
+        
+        setLoading(true);
         try {
-            const ids = await animeApi.getFavoriteIds();
-            setIsFavorite(ids.includes(animeId));
-        } catch (err) {
-            console.error(err);
+            const favoriteIds = await animeApi.getFavoriteIds();
+            setIsFavorite(favoriteIds.includes(animeId));
+        } catch (error) {
+            console.error('Ошибка проверки избранного:', error);
+        } finally {
+            setLoading(false);
         }
-    };
+    }, [animeId, loading]);
 
     const toggleFavorite = async (e: React.MouseEvent) => {
         e.stopPropagation();

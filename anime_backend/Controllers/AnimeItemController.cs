@@ -1,8 +1,11 @@
-﻿using anime_backend.DTOs.AnimeItem;
+﻿using anime_backend.Data;
+using anime_backend.DTOs.AnimeItem;
 using anime_backend.Interfaces;
+using anime_backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace anime_backend.Controllers
 {
@@ -12,10 +15,12 @@ namespace anime_backend.Controllers
     public class AnimeItemController : ControllerBase
     {
         private readonly IAnimeItemService _animeItemService;
+        private readonly AppDbContext _dbContext;
 
-        public AnimeItemController(IAnimeItemService animeItemService)
+        public AnimeItemController(IAnimeItemService animeItemService, AppDbContext dbContext)
         {
             _animeItemService = animeItemService;
+            _dbContext = dbContext;
         }
 
         [AllowAnonymous]
@@ -55,6 +60,13 @@ namespace anime_backend.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet("get-list")]
+        public async Task<List<AnimeItemResponseDto>> GetListAnimeAsync(int page = 1, int pageSize = 20)
+        {
+            return await _animeItemService.GetListAnimeAsync(page, pageSize);
+        }
+
+        [AllowAnonymous]
         [HttpGet("new")]
         public async Task<List<AnimeItemResponseDto>> GetNewAnimeAsync()
         {
@@ -91,6 +103,43 @@ namespace anime_backend.Controllers
         {
             await _animeItemService.AddGenreToAnime(animeId, genreId);
             return NoContent();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("import")]
+        public async Task<IActionResult> ImportAnime([FromBody] List<AnimeItem> animeList)
+        {
+            if (animeList == null || animeList.Count == 0)
+                return BadRequest("Список аниме пуст");
+
+            var imported = 0;
+            var skipped = 0;
+
+            foreach (var anime in animeList)
+            {
+                var exists = await _dbContext.AnimeItem.AnyAsync(x => x.Id == anime.Id);
+
+                if (!exists)
+                {
+                    anime.CreatedAt = DateTime.UtcNow;
+                    await _dbContext.AnimeItem.AddAsync(anime);
+                    imported++;
+                }
+                else
+                {
+                    skipped++;
+                }
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = $"Импорт завершён",
+                imported = imported,
+                skipped = skipped,
+                total = animeList.Count
+            });
         }
     }
 }

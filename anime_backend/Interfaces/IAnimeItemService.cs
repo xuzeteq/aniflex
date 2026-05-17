@@ -9,6 +9,7 @@ namespace anime_backend.Interfaces
         Task<List<AnimeItemResponseDto>> GetOngoingAnimeAsync();
         Task<List<AnimeItemResponseDto>> GetAnimeCurrentSeasonAsync();
         Task<AnimeItemResponseDto> GetRandomAnimeAsync();
+        Task<List<AnimeItemResponseDto>> GetListAnimeAsync(int page = 1, int pageSize = 20);
         Task<List<AnimeItemResponseDto>> GetNewAnimeAsync();
         Task<AnimeItemResponseDto> CreateAnimeAsync(CreateAnimeItemDto dto);
         Task<AnimeItemResponseDto> PatchAnimeAsync(PatchAnimeItemDto dto, int id);
