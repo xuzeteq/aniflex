@@ -14,6 +14,7 @@ namespace anime_backend.Data
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Episode> Episodes { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<Favourite> Favourites { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Rating> Ratings { get; set; }

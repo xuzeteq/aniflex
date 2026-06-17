@@ -67,6 +67,7 @@ namespace anime_backend
             builder.Services.AddScoped<IRelatedAnimeService, RelatedAnimeService>();
             builder.Services.AddScoped<IEpisodeService, EpisodeService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IRatingService, RatingService>();
             builder.Services.AddSingleton<EmailService>();
@@ -77,7 +78,7 @@ namespace anime_backend
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:5173")
+                    policy.WithOrigins("http://localhost:3000")
                     .AllowCredentials()
                     .AllowAnyHeader()
                     .AllowAnyMethod();
