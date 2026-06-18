@@ -18,6 +18,8 @@ import HomePage from './pages/HomePage'
 import VerifyPage from './pages/Auth/VerifyPage'
 import ForgotPasswordPage from './pages/Auth/ForgotPasswordPage'
 import ResetPasswordPage from './pages/Auth/ResetPasswordPage'
+import PrevYearPage from './pages/PrevYearPage'
+import ThisYearPage from './pages/ThisYearPage'
 
 function App() {
 
@@ -46,6 +48,8 @@ function App() {
             <Route path='/ongoing' element= { <OngoingPage /> } />
             <Route path={'/profile/:id'} element={ <ProfilePage />  }/>
             <Route path='/logs' element = {  <LogsPage /> }/>
+            <Route path='/anime/year/2025' element = {  <PrevYearPage /> }/>
+            <Route path='/anime/year/2026' element = {  <ThisYearPage /> }/>
             <Route path='/users' element = { <UsersPage /> } />
             <Route path='/blocked' element = { <BlockedPage />} />
             <Route path='/audit-logs' element= {<AuditLogsPage />} />

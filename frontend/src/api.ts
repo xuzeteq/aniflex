@@ -43,6 +43,12 @@ export const animeApi = {
     getOngoingAnime: (): Promise<AnimeItem[]> =>
         api.get('/AnimeItem/ongoing-anime').then(res => res.data),
 
+    getPrevYear: (): Promise<AnimeItem[]> =>
+        api.get('/AnimeItem/prev-year').then(res => res.data),
+
+    getThisYear: (): Promise<AnimeItem[]> =>
+        api.get('/AnimeItem/this-year').then(res => res.data),
+
     getCurrentSeasonAnime: (): Promise<AnimeItem[]> =>
         api.get('/AnimeItem/current-season').then(res => res.data),
 

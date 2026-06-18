@@ -107,6 +107,8 @@ export default function Header() {
                             <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[#bbbbbb] text-sm sm:text-base md:justify-start">
                                 <li><a className="hover:text-[#dbd8d8] transition-all duration-250" href="/catalog">Каталог</a></li>
                                 <li><a className="hover:text-[#dbd8d8] transition-all duration-250" href="/ongoing">Онгоинг</a></li>
+                                <li><a className="hover:text-[#dbd8d8] transition-all duration-250" href="/anime/year/2025">2025</a></li>
+                                <li><a className="hover:text-[#dbd8d8] transition-all duration-250" href="/anime/year/2026">2026</a></li>
                                 <li><a onClick={handleRandom} className="hover:text-[#dbd8d8] transition-all duration-250 cursor-pointer">Случайное аниме</a></li>
                             </ul>
                         </nav>
