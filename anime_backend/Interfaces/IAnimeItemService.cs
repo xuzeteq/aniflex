@@ -8,6 +8,8 @@ namespace anime_backend.Interfaces
         Task<AnimeItemResponseDto> GetAnimeByIdAsync(int id);
         Task<List<AnimeItemResponseDto>> GetOngoingAnimeAsync();
         Task<List<AnimeItemResponseDto>> GetAnimeCurrentSeasonAsync();
+        Task<List<AnimeItemResponseDto>> GetAnimePrevYearAsync();
+        Task<List<AnimeItemResponseDto>> GetAnimeThisYearAsync();
         Task<AnimeItemResponseDto> GetRandomAnimeAsync();
         Task<List<AnimeItemResponseDto>> GetListAnimeAsync(int page = 1, int pageSize = 20);
         Task<List<AnimeItemResponseDto>> GetNewAnimeAsync();

@@ -171,6 +171,84 @@ namespace anime_backend.Services
             return result;
         }
 
+        public async Task<List<AnimeItemResponseDto>> GetAnimePrevYearAsync()
+        {
+            var items = await _dbContext.AnimeItem
+                .Where(a => a.ReleaseYear == DateTime.UtcNow.Year - 1)
+                .Include(a => a.AnimeGenres)
+                .ThenInclude(ag => ag.Genre)
+                .ToListAsync();
+
+            var result = new List<AnimeItemResponseDto>();
+
+            foreach (var a in items)
+            {
+                var episodesCount = await _dbContext.Episodes.CountAsync(e => e.AnimeId == a.Id);
+
+                result.Add(new AnimeItemResponseDto
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    OriginalTitle = a.OriginalTitle,
+                    Description = a.Description,
+                    Episodes = episodesCount,
+                    MaxEpisodes = a.MaxEpisodes,
+                    Rating = a.Rating,
+                    AverageRating = a.AverageRating,
+                    RatingsCount = a.RatingsCount,
+                    ReleaseYear = a.ReleaseYear,
+                    Studio = a.Studio,
+                    PosterUrl = a.PosterUrl,
+                    Season = a.Season,
+                    Status = a.Status,
+                    Type = a.Type,
+                    CreatedAt = a.CreatedAt,
+                    Genres = a.AnimeGenres.Select(ag => ag.Genre.Name).ToList()
+                });
+            }
+
+            return result;
+        }
+
+        public async Task<List<AnimeItemResponseDto>> GetAnimeThisYearAsync()
+        {
+            var items = await _dbContext.AnimeItem
+                .Where(a => a.ReleaseYear == DateTime.UtcNow.Year)
+                .Include(a => a.AnimeGenres)
+                .ThenInclude(ag => ag.Genre)
+                .ToListAsync();
+
+            var result = new List<AnimeItemResponseDto>();
+
+            foreach (var a in items)
+            {
+                var episodesCount = await _dbContext.Episodes.CountAsync(e => e.AnimeId == a.Id);
+
+                result.Add(new AnimeItemResponseDto
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    OriginalTitle = a.OriginalTitle,
+                    Description = a.Description,
+                    Episodes = episodesCount,
+                    MaxEpisodes = a.MaxEpisodes,
+                    Rating = a.Rating,
+                    AverageRating = a.AverageRating,
+                    RatingsCount = a.RatingsCount,
+                    ReleaseYear = a.ReleaseYear,
+                    Studio = a.Studio,
+                    PosterUrl = a.PosterUrl,
+                    Season = a.Season,
+                    Status = a.Status,
+                    Type = a.Type,
+                    CreatedAt = a.CreatedAt,
+                    Genres = a.AnimeGenres.Select(ag => ag.Genre.Name).ToList()
+                });
+            }
+
+            return result;
+        }
+
         public async Task<List<AnimeItemResponseDto>> GetNewAnimeAsync()
         {
             var items = await _dbContext.AnimeItem

@@ -53,6 +53,20 @@ namespace anime_backend.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet("prev-year")]
+        public async Task<List<AnimeItemResponseDto>> GetAnimePrevYearAsync()
+        {
+            return await _animeItemService.GetAnimePrevYearAsync();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("this-year")]
+        public async Task<List<AnimeItemResponseDto>> GetAnimeThisYearAsync()
+        {
+            return await _animeItemService.GetAnimeThisYearAsync();
+        }
+
+        [AllowAnonymous]
         [HttpGet("random")]
         public async Task<AnimeItemResponseDto> GetRandomAnimeAsync()
         {
