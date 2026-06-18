@@ -119,7 +119,7 @@ export default function UsersPage() {
                     <select
                         value={filterRole}
                         onChange={(e) => setFilterRole(e.target.value)}
-                        className="w-full min-w-0 bg-[#2a2a2a] text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500 sm:w-auto sm:min-w-[10rem]"
+                        className="w-full min-w-0 bg-[#2a2a2a] text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500 sm:w-auto sm:min-w-40"
                     >
                         <option value="all">Все роли</option>
                         <option value="User">Пользователь</option>
@@ -130,7 +130,7 @@ export default function UsersPage() {
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
-                        className="w-full min-w-0 bg-[#2a2a2a] text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500 sm:w-auto sm:min-w-[10rem]"
+                        className="w-full min-w-0 bg-[#2a2a2a] text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500 sm:w-auto sm:min-w-40"
                     >
                         <option value="all">Все статусы</option>
                         <option value="active">Активные</option>
