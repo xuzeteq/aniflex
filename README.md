@@ -43,4 +43,4 @@
 ## 🐳 Запуск через Docker будет добавлен в ближайшем будущем.
 
 ```bash
-docker-compose up --build
+meow meow meow
