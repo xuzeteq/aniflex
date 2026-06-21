@@ -18,5 +18,6 @@ namespace anime_backend.Data
         public DbSet<Favourite> Favourites { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
     }
 }

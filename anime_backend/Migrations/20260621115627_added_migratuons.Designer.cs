@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using anime_backend.Data;
@@ -11,9 +12,11 @@ using anime_backend.Data;
 namespace anime_backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260621115627_added_migratuons")]
+    partial class added_migratuons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,7 +301,7 @@ namespace anime_backend.Migrations
                     b.ToTable("RelatedAnimes");
                 });
 
-            modelBuilder.Entity("anime_backend.Models.Subscribe", b =>
+            modelBuilder.Entity("anime_backend.Models.Subscribes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -328,7 +331,7 @@ namespace anime_backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Subscribes");
+                    b.ToTable("Subscibes");
                 });
 
             modelBuilder.Entity("anime_backend.Models.User", b =>
@@ -488,7 +491,7 @@ namespace anime_backend.Migrations
                     b.Navigation("TargetAnime");
                 });
 
-            modelBuilder.Entity("anime_backend.Models.Subscribe", b =>
+            modelBuilder.Entity("anime_backend.Models.Subscribes", b =>
                 {
                     b.HasOne("anime_backend.Models.User", "User")
                         .WithMany()

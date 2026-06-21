@@ -72,6 +72,7 @@ namespace anime_backend
             builder.Services.AddScoped<IRatingService, RatingService>();
             builder.Services.AddSingleton<EmailService>();
             builder.Services.AddScoped<GenreService>();
+            builder.Services.AddScoped<ISubscribeService, SubscribeService>();
 
 
             builder.Services.AddCors(options =>
