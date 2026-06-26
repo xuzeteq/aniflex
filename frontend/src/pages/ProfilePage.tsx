@@ -42,7 +42,7 @@ export default function ProfilePage() {
             
             try {
                 setLoading(true);
-                const { data } = await axios.get(`https://localhost:7068/api/User/get-user-${id}`);
+                const { data } = await axios.get(`http://localhost/api/User/get-user-${id}`);
                 setProfileUser(data);
                 setError(null);
             } catch (err: any) {

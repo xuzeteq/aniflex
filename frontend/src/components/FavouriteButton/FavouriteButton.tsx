@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useFavorites } from '../../contexts/FavouriteContext';
 import { animeApi } from '../../api';
 
 interface FavoriteButtonProps {
@@ -9,28 +10,8 @@ interface FavoriteButtonProps {
 
 export default function FavoriteButton({ animeId, onToggle }: FavoriteButtonProps) {
     const { isAuthenticated } = useAuth();
-    const [isFavorite, setIsFavorite] = useState(false);
+    const { isFavorite, refresh } = useFavorites();
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            checkFavorite();
-        }
-    }, [animeId, isAuthenticated]);
-
-    const checkFavorite = useCallback(async () => {
-        if (loading) return;
-        
-        setLoading(true);
-        try {
-            const favoriteIds = await animeApi.getFavoriteIds();
-            setIsFavorite(favoriteIds.includes(animeId));
-        } catch (error) {
-            console.error('Ошибка проверки избранного:', error);
-        } finally {
-            setLoading(false);
-        }
-    }, [animeId, loading]);
 
     const toggleFavorite = async (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -42,13 +23,12 @@ export default function FavoriteButton({ animeId, onToggle }: FavoriteButtonProp
 
         setLoading(true);
         try {
-            if (isFavorite) {
+            if (isFavorite(animeId)) {
                 await animeApi.removeFavourite(animeId);
-                setIsFavorite(false);
             } else {
                 await animeApi.addFavourite(animeId);
-                setIsFavorite(true);
             }
+            await refresh();  // Обновляем список
             onToggle?.();
         } catch (err) {
             console.error(err);
@@ -67,7 +47,7 @@ export default function FavoriteButton({ animeId, onToggle }: FavoriteButtonProp
                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
                 <span className="text-xl">
-                    {isFavorite ? '❤️' : '🖤'}
+                    {isFavorite(animeId) ? '❤️' : '🖤'}
                 </span>
             )}
         </button>

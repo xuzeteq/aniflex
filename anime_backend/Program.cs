@@ -79,7 +79,7 @@ namespace anime_backend
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:3000")
+                    policy.WithOrigins("http://localhost:3000", "http://localhost", "http://localhost:80")
                     .AllowCredentials()
                     .AllowAnyHeader()
                     .AllowAnyMethod();
@@ -109,10 +109,10 @@ namespace anime_backend
 
             if (app.Environment.IsDevelopment())
             {
-                app.MapScalarApiReference();
                 app.MapOpenApi();
             }
 
+            app.MapScalarApiReference();
             app.UseHttpsRedirection();
             app.UseCors("AllowFrontend");
             app.UseAuthentication();

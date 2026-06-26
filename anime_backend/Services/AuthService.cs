@@ -34,6 +34,7 @@ namespace anime_backend.Services
                 AvatarUrl = user.AvatarUrl,
                 IsBlocked = user.IsBlocked,
                 IsVerify = user.IsVerify,
+                IsSubscriber = user.IsSubscriber,
                 CreatedAt = user.CreatedAt
             };
         }
@@ -54,6 +55,7 @@ namespace anime_backend.Services
                 IsBlocked = false,
                 FavouritesCount = 0,
                 IsVerify = false,
+                IsSubscriber = false,
                 Role = "User",
                 CreatedAt = DateTime.UtcNow
             };
@@ -72,6 +74,7 @@ namespace anime_backend.Services
                 FavouritesCount = user.FavouritesCount,
                 IsBlocked = user.IsBlocked,
                 IsVerify = user.IsVerify,
+                IsSubscriber = user.IsSubscriber,
                 CreatedAt = user.CreatedAt
             };
         }
@@ -90,6 +93,7 @@ namespace anime_backend.Services
                 FavouritesCount = user.FavouritesCount,
                 AvatarUrl = user.AvatarUrl,
                 IsBlocked = user.IsBlocked,
+                IsSubscriber = user.IsSubscriber,
                 IsVerify = user.IsVerify,
                 CreatedAt = user.CreatedAt
             };

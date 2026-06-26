@@ -1,4 +1,5 @@
-﻿using anime_backend.Interfaces;
+﻿using anime_backend.DTOs.Subscribe;
+using anime_backend.Interfaces;
 using anime_backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace anime_backend.Controllers
         }
 
         [HttpPost("active")]
-        public async Task<Subscribe> ActiveSubscribe([Required] int userId, [Required] int days)
+        public async Task<SubscribeResponseDto> ActiveSubscribe([Required] int userId, [Required] int days)
         {
             var userSubscribe = await _subscribeService.ActiveSubscribe(userId, days);
             return userSubscribe;

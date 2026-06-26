@@ -11,6 +11,8 @@
         public int FavouritesCount { get; set; }
         public int RatingsCount { get; set; }
 
+        public bool IsSubscriber { get; set; }
+
         public string Role { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
     }

@@ -10,6 +10,7 @@
         public int RatingsCount { get; set; }
         public string AvatarUrl { get; set; } = string.Empty;
         public bool IsBlocked { get; set; }
+        public bool IsSubscriber { get; set; }
         public bool IsVerify { get; set; }
         public DateTime CreatedAt { get; set; }
     }
