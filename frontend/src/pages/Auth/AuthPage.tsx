@@ -31,7 +31,7 @@ export default function AuthPage() {
     return (
         <> 
             <div className="layout-shell flex justify-center py-8 sm:py-12">
-                <div className="w-full max-w-xl min-h-0 bg-[#1e1e1e] p-6 sm:p-8 rounded-xl sm:mt-[3.75rem]">
+                <div className="w-full max-w-xl min-h-0 bg-[#1e1e1e] p-6 sm:p-8 rounded-xl sm:mt-15">
                     <h2 className="text-3xl font-bold text-white text-center">Авторизация</h2>
                     <p className="text-md font-normal text-[#a09f9f] text-center">Авторизуйтесь чтобы открыть доступ <br /> ко всем возможностям сайта</p>
 

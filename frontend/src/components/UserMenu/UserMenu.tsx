@@ -19,7 +19,7 @@ export default function UserMenu() {
                 <button
                     onClick={() => setIsOpen(!isOpen)} 
                     className="flex items-center focus:outline-none">
-                    <img src={user?.avatarUrl} alt="" title={`${user?.isVerify ? "Верифицирован" : ""}`}
+                    <img src={user?.avatarUrl} loading="lazy" alt="" title={`${user?.isVerify ? "Верифицирован" : ""}`}
                     className={clsx('w-12 h-12 rounded-4xl', user?.isVerify ? 'border-2 border-green-400' : '')}/>
                 </button>
 

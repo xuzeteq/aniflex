@@ -114,7 +114,8 @@ export default function ProfilePage() {
                 <div className="relative p-5 flex flex-col items-center text-center space-y-3">
                     <div className="relative group">
                         <div className="absolute -inset-1 bg-green-500/20 rounded-full blur-md group-hover:bg-green-500/30 transition-all duration-300"></div>
-                        <img
+                        <img 
+                            loading='lazy'
                             src={user.avatarUrl || `https://ui-avatars.com/api/?name=${user.username}&background=064e3b&color=22c55e`}
                             alt={user.username}
                             className="relative w-24 h-24 rounded-full border-2 border-gray-800 object-cover bg-gray-900"

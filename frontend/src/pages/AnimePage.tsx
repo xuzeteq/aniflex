@@ -58,7 +58,7 @@ export default function AnimePage() {
 
             <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-start">
                 <div className="mx-auto w-full shrink-0 max-w-56 sm:max-w-xs lg:mx-0">
-                    <img src={anime?.posterUrl} alt="" className="w-70 rounded-xl object-cover aspect-2/3 max-h-112" />
+                    <img src={anime?.posterUrl} loading="lazy" alt="" className="w-70 rounded-xl object-cover aspect-2/3 max-h-112" />
                 </div>
                 
                 <div className="grid min-w-0 flex-1 grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-12 lg:gap-x-20 sm:gap-y-5">
