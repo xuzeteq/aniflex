@@ -40,3 +40,7 @@ Thumbs.db
 *.temp
 coverage/
 .nyc_output/
+
+pgdata
+pgdata/
+.pgdata/
