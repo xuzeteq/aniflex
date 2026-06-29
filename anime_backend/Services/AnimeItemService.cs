@@ -328,7 +328,7 @@ namespace anime_backend.Services
             };
         }
 
-        public async Task<List<AnimeItemResponseDto>> GetListAnimeAsync(int page = 1, int pageSize = 20)
+        public async Task<object> GetListAnimeAsync(int page = 1, int pageSize = 20)
         {
             var query = _dbContext.AnimeItem.AsQueryable();
 
@@ -363,7 +363,14 @@ namespace anime_backend.Services
                 });
             }
 
-            return result;
+            return new
+            {
+                Items = result,
+                Total = total,
+                TotalPages = (int)Math.Ceiling(total / (double)pageSize),
+                CurrentPage = page,
+                PageSize = pageSize
+            };
         }
 
         //public async Task<AnimeItemResponseDto> GetRelatedAnime()

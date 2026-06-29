@@ -75,7 +75,7 @@ namespace anime_backend.Controllers
 
         [AllowAnonymous]
         [HttpGet("get-list")]
-        public async Task<List<AnimeItemResponseDto>> GetListAnimeAsync(int page = 1, int pageSize = 20)
+        public async Task<object> GetListAnimeAsync(int page = 1, int pageSize = 20)
         {
             return await _animeItemService.GetListAnimeAsync(page, pageSize);
         }

@@ -56,7 +56,7 @@ export const animeApi = {
     getRandomAnime: (): Promise<AnimeItem> =>
         api.get('/AnimeItem/random').then(res => res.data),
     
-    getListAnime: (page = 1, pageSize = 20): Promise<AnimeItem[]> =>
+    getListAnime: (page = 1, pageSize = 24): Promise<AnimeItem[]> =>
         api.get('/AnimeItem/get-list', {
             params: {page, pageSize}
         }).then(res => res.data),
