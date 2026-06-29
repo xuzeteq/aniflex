@@ -42,6 +42,7 @@ namespace anime_backend.Controllers
         }
 
         [HttpPost("addComment")]
+        [Authorize]
         public async Task<IActionResult> AddCommentAsync(int animeId, string text)
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);

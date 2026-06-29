@@ -9,5 +9,7 @@
 
         public int TargetAnimeId { get; set; }
         public AnimeItem TargetAnime { get; set; } = null!;
+
+        public string Text { get; set; } = string.Empty;
     }
 }

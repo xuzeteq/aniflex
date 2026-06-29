@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import type { AnimeItem, Episode } from "../types";
+import type { AnimeItem, Episode, Comment } from "../types";
 import { animeApi } from "../api";
 import RatingStars from "../components/Rating/RatingStar";
 import AnimeCard from "../components/AnimeCard/AnimeCard";
+import axios from "axios";
+import CommentItem from "../components/Comments/CommentItem";
+import CommentForm from "../components/Comments/CommentForm";
 
 
 export default function AnimePage() {
@@ -13,6 +16,7 @@ export default function AnimePage() {
     const [episodes, setEpisodes] = useState<Episode[] | null>(null);
     const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
     const [relatedAnime, setRelatedAnime] = useState<AnimeItem[]>([]);
+    const [comments, setComments] = useState<Comment[]>([]);
 
     const loadRelated = async () => {
         try {
@@ -24,6 +28,19 @@ export default function AnimePage() {
         }
     }
 
+    const handleNewComment = (newComment: Comment) => {
+        setComments((prev) => [newComment, ...prev] );
+    }
+
+    useEffect(() => {
+        try {
+            axios.get(`/api/Comments/anime-comments/${id}`).then(res => setComments(res.data));
+        }
+        catch (err) {
+            console.error(err);
+        }
+        
+    }, [id])
 
     useEffect(() => {
         if (!id) return;
@@ -44,6 +61,14 @@ export default function AnimePage() {
         const handleEpisodeClick = (episode: Episode) => {
         setSelectedEpisode(episode);
         document.getElementById('player-container')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    if (!anime) {
+        return (
+            <div className="layout-shell py-6 sm:py-8">
+                <div className="text-[#d1d1d1] text-lg">Загрузка...</div>
+            </div>
+        )
     };
 
     return (
@@ -140,6 +165,31 @@ export default function AnimePage() {
               </div>
             )}
 
+            <div>
+                <div>
+                    <h2 className="font-mono text-[#d1d1d1] text-2xl font-black py-2 pt-6">Комментарии ({comments.length})</h2>
+
+                    <div className="grid grid-cols-1 gap-2">
+                        {comments.length > 0 ? (
+                            comments.map((comm) => (
+                                    <CommentItem
+                                    text={comm.text}
+                                    userId={comm.userId}
+                                    animeId={comm.animeId}
+                                    userRole={comm.userRole}
+                                    avatarUrl={comm.avatarUrl}
+                                    username={comm.username}
+                                    createdAt={comm.createdAt}
+                                />
+                            )))
+                        :
+                        <p className="py-2 text-xl text-[#d1d1d1]">Комментариев пока что нет. Напишите первый!</p>
+                        }
+                    </div>
+
+                    <CommentForm animeId={anime!.id} onCommentAdded={handleNewComment}/>
+                </div>
+            </div>
         </div>
         </>
     )

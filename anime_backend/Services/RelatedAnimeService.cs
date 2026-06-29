@@ -16,7 +16,7 @@ namespace anime_backend.Services
             _dbContext = dbContext;
         }
 
-        public async Task CreateRelatedAnime(int sourceId, int targetId)
+        public async Task CreateRelatedAnime(int sourceId, int targetId, string text)
         {
             if (sourceId == targetId) return;
 
@@ -27,7 +27,8 @@ namespace anime_backend.Services
                 _dbContext.RelatedAnimes.Add(new RelatedAnime
                 {
                     SourceAnimeId = sourceId,
-                    TargetAnimeId = targetId
+                    TargetAnimeId = targetId,
+                    Text = text
                 });
             }
 

@@ -52,3 +52,15 @@ export interface RegisterRequest {
     email: string;
     password: string;
 }
+
+export interface Comment {
+    id: number,
+    userId: number,
+    animeId: number,
+    text: string,
+    username: string,
+    avatarUrl: string,
+    userRole: string,
+    isDeleted: boolean,
+    createdAt: string
+}

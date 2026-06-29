@@ -4,7 +4,7 @@ namespace anime_backend.Interfaces
 {
     public interface IRelatedAnimeService
     {
-        Task CreateRelatedAnime(int sourceId, int targetId);
+        Task CreateRelatedAnime(int sourceId, int targetId, string text);
         Task RemoveRelated(int sourceId, int targetId);
         Task<List<AnimeItem>> GetRelatedAnime(int animeId);
     }

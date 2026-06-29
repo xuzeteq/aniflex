@@ -17,9 +17,9 @@ namespace anime_backend.Controllers
         }
 
         [HttpPost("add-related")]
-        public async Task<IActionResult> CreateRelatedAnime(int sourceId, int targetId)
+        public async Task<IActionResult> CreateRelatedAnime(int sourceId, int targetId, string text)
         {
-            await _service.CreateRelatedAnime(sourceId, targetId);
+            await _service.CreateRelatedAnime(sourceId, targetId, text);
             return Ok();
         }
 
