@@ -1,6 +1,7 @@
 ﻿using anime_backend.Data;
 using anime_backend.DTOs.Genre;
 using anime_backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace anime_backend.Services
 {
@@ -33,6 +34,15 @@ namespace anime_backend.Services
                 Id = newGenre.Id,
                 Name = newGenre.Name
             };
+        }
+
+        public async Task<List<GenreResponseDto>> GetGenresAsync()
+        {
+            return await _dbContext.Genres.Select(g => new GenreResponseDto
+            {
+                Id= g.Id,
+                Name = g.Name
+            }).ToListAsync();
         }
     }
 }

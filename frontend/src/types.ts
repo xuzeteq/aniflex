@@ -64,3 +64,8 @@ export interface Comment {
     isDeleted: boolean,
     createdAt: string
 }
+
+export interface Genre {
+    id: number,
+    name: string
+}

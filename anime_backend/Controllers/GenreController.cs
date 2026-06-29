@@ -22,5 +22,11 @@ namespace anime_backend.Controllers
             var genre = await _service.AddGenre(dto);
             return Ok(genre);
         }
+
+        [HttpGet("genres")]
+        public async Task<List<GenreResponseDto>> GetGenresAsync()
+        {
+            return await _service.GetGenresAsync();
+        }
     }
 }

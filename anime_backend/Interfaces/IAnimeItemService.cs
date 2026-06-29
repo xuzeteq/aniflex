@@ -11,7 +11,7 @@ namespace anime_backend.Interfaces
         Task<List<AnimeItemResponseDto>> GetAnimePrevYearAsync();
         Task<List<AnimeItemResponseDto>> GetAnimeThisYearAsync();
         Task<AnimeItemResponseDto> GetRandomAnimeAsync();
-        Task<object> GetListAnimeAsync(int page = 1, int pageSize = 20);
+        Task<object> GetListAnimeAsync(int page = 1, int pageSize = 20, List<int>? genresIds = null);
         Task<List<AnimeItemResponseDto>> GetNewAnimeAsync();
         Task<AnimeItemResponseDto> CreateAnimeAsync(CreateAnimeItemDto dto);
         Task<AnimeItemResponseDto> PatchAnimeAsync(PatchAnimeItemDto dto, int id);

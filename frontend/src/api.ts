@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { AnimeItem, Episode } from './types'
+import type { AnimeItem, Episode, Genre } from './types'
 const API_BASE = '/api';
 
 const api = axios.create({
@@ -56,10 +56,20 @@ export const animeApi = {
     getRandomAnime: (): Promise<AnimeItem> =>
         api.get('/AnimeItem/random').then(res => res.data),
     
-    getListAnime: (page = 1, pageSize = 24): Promise<AnimeItem[]> =>
-        api.get('/AnimeItem/get-list', {
-            params: {page, pageSize}
-        }).then(res => res.data),
+    getListAnime: (page = 1, pageSize = 24, genresIds: number[] = []): Promise<any> => {
+        const params = new URLSearchParams();
+        params.append('page', page.toString());
+        params.append('pageSize', pageSize.toString());
+        
+        genresIds.forEach(id => params.append('genresIds', id.toString()));
+
+        return api.get('/AnimeItem/get-list', { params }).then(res => res.data);
+    },
+
+
+    getGenre: (): Promise<Genre[]> =>
+        api.get('/Genre/genres').then(res => res.data),
+    
 
     getNewAnime: (): Promise<AnimeItem[]> =>
         api.get('/AnimeItem/new').then(res => res.data),

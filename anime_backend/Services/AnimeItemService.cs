@@ -328,9 +328,14 @@ namespace anime_backend.Services
             };
         }
 
-        public async Task<object> GetListAnimeAsync(int page = 1, int pageSize = 20)
+        public async Task<object> GetListAnimeAsync(int page = 1, int pageSize = 20, List<int>? genresIds = null)
         {
             var query = _dbContext.AnimeItem.AsQueryable();
+
+            if (genresIds != null && genresIds.Any())
+            {
+                query = query.Where(a => genresIds.All(id => a.AnimeGenres.Any(ag => ag.GenreId == id)));
+            }
 
             var total = await query.CountAsync();
             var items = await query.OrderByDescending(x => x.CreatedAt).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
