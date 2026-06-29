@@ -20,6 +20,7 @@ import ForgotPasswordPage from './pages/Auth/ForgotPasswordPage'
 import ResetPasswordPage from './pages/Auth/ResetPasswordPage'
 import PrevYearPage from './pages/PrevYearPage'
 import ThisYearPage from './pages/ThisYearPage'
+import FavouritesPage from './pages/FavouritesPage'
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
             <Route path='/anime/year/2025' element = {  <PrevYearPage /> }/>
             <Route path='/anime/year/2026' element = {  <ThisYearPage /> }/>
             <Route path='/users' element = { <UsersPage /> } />
+            <Route path='/favourite' element = { isAuthenticated ? <FavouritesPage /> : <Navigate to={'/auth'} /> } />
             <Route path='/blocked' element = { <BlockedPage />} />
             <Route path='/audit-logs' element= {<AuditLogsPage />} />
             <Route path='/not-allowed' element= { <MustAdminPage /> } />
